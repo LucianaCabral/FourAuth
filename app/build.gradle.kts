@@ -77,9 +77,15 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.androidx.compose)
     implementation(libs.koin.viewmodel)
-    implementation(libs.mockito)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.coroutines.play.services)
+
+
+    //  Test
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.koin.test.junit4)
 
     //Firebase
     implementation(platform(libs.firebase.bom))
