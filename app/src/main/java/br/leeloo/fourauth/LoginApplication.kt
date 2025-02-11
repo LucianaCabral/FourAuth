@@ -1,6 +1,7 @@
 package br.leeloo.fourauth
 
 import android.app.Application
+import br.leeloo.fourauth.di.AppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -11,6 +12,7 @@ open class LoginApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@LoginApplication)
+            modules(AppModule.module)
         }
     }
 }
