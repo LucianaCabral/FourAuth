@@ -3,45 +3,47 @@ package br.leeloo.fourauth
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import br.leeloo.fourauth.ui.theme.FourAuthTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import br.leeloo.four.presentation.viewmodel.LoginViewModel
+import br.leeloo.fourauth.presentation.screen.HomeScreen
+import br.leeloo.fourauth.presentation.screen.LoginScreen
+import br.leeloo.fourauth.presentation.screen.RegisterScreen
+import br.leeloo.fourauth.presentation.viewmodel.HomeViewModel
+import br.leeloo.fourauth.presentation.viewmodel.RegisterViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : ComponentActivity() {
+internal class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        val loginViewModel: LoginViewModel by viewModel()
+        val registerViewModel: RegisterViewModel by viewModel()
+        val homeViewModel: HomeViewModel by viewModel()
+
         setContent {
-            FourAuthTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            val navController = rememberNavController()
+            val context = LocalContext.current
+            MaterialTheme {
+                Surface {
+
+                    NavHost(navController = navController, startDestination = context.getString(R.string.nav_login)) {
+                        composable(context.getString(R.string.nav_login)) {
+                            LoginScreen(loginViewModel, navController)
+                        }
+                        composable(context.getString(R.string.nav_register)) {
+                            RegisterScreen(registerViewModel, navController = navController)
+                        }
+                        composable(context.getString(R.string.nav_home)) {
+                            HomeScreen(viewModel = homeViewModel, navController = navController)
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FourAuthTheme {
-        Greeting("Android")
     }
 }
