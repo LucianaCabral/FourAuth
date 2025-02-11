@@ -11,8 +11,10 @@ firebaseAnalytics = "22.2.0"
 firebaseAuth = "23.1.0"
 gson = "2.12.1"
 koinAndroidxComposeVersion = "3.4.1"
+koinTestJunit4 = "3.5.3"
 kotlin = "2.1.0"
 kotlinxCoroutinesPlayServices = "1.10.1"
+kotlinxCoroutinesTest = "1.10.1"
 ksp = "1.9.23-1.0.19"
 #koin = "4.0.2"
 ktorClientCore = "3.0.3"
@@ -22,6 +24,8 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 lifecycleRuntimeKtx = "2.8.7"
 material = "1.7.7"
+mockitoKotlin = "4.1.0"
+mockk = "1.13.8"
 navigationComposeVersion = "2.7.7"
 playServicesAuth = "21.3.0"
 firebaseFirestoreKtx = "25.1.1"
@@ -45,6 +49,7 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 # koin
+koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinTestJunit4" }
 koin-viewmodel = {  module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin"}
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin"}
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
@@ -65,7 +70,10 @@ androidx-material = { group = "com.google.android.material", name = "material", 
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 material = { module = "androidx.compose.material:material", version.ref = "material" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 
