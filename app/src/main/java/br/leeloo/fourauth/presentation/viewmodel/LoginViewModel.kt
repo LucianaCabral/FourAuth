@@ -1,7 +1,9 @@
-package br.leeloo.four.presentation.viewmodel
+package br.leeloo.fourauth.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.leeloo.fourauth.analytics.ButtonEvent
+import br.leeloo.fourauth.analytics.LoginAnalytics
 import br.leeloo.fourauth.domain.usecase.LoginUseCase
 import br.leeloo.fourauth.presentation.action.LoginAction
 import br.leeloo.fourauth.presentation.state.LoginState
@@ -17,6 +19,7 @@ const val MIN_PASSWORD_LENGTH = 6
 
 internal class LoginViewModel(
     private val loginUseCase: LoginUseCase,
+    private val analytics: LoginAnalytics
 
     ) : ViewModel() {
 
@@ -25,13 +28,20 @@ internal class LoginViewModel(
     private val _action: Channel<LoginAction> = Channel<LoginAction>(Channel.CONFLATED)
     val action: Flow<LoginAction> = _action.receiveAsFlow()
 
+    init {
+        analytics.screenView()
+    }
+
     fun onButtonRegisterClicked() {
         _action.trySend(LoginAction.onResgisterClicked)
+        analytics.logButtonClicked(ButtonEvent.REGISTER_CLICKED)
     }
 
     fun onButtonLoginClicked() {
         _action.trySend(LoginAction.LoginButtonClicked)
+        analytics.logButtonClicked(ButtonEvent.LOGIN_CLICKED)
     }
+
 
     fun onEmailChanged(email: String) {
         _uiState.value = _uiState.value.copy(email = email)
@@ -91,5 +101,9 @@ internal class LoginViewModel(
 
     fun clearFields() {
         _uiState.value = state.value.copy(email = "", password = "")
+    }
+
+    fun resetState() {
+        _uiState.value = LoginState()
     }
 }

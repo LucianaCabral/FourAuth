@@ -5,18 +5,16 @@ androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
 composeBom = "2025.01.01"
 coreKtx = "1.15.0"
-espressoCore = "3.6.1"
+espressoCore = "3.5.0"
 firebaseBom = "33.8.0"
 firebaseAnalytics = "22.2.0"
 firebaseAuth = "23.1.0"
 gson = "2.12.1"
-koinAndroidxComposeVersion = "3.4.1"
 koinTestJunit4 = "3.5.3"
 kotlin = "2.1.0"
 kotlinxCoroutinesPlayServices = "1.10.1"
 kotlinxCoroutinesTest = "1.10.1"
 ksp = "1.9.23-1.0.19"
-#koin = "4.0.2"
 ktorClientCore = "3.0.3"
 kotlinx-serialization = "1.8.0"
 kotlinxCoroutinesCore = "1.10.1"
@@ -26,22 +24,31 @@ lifecycleRuntimeKtx = "2.8.7"
 material = "1.7.7"
 mockitoKotlin = "4.1.0"
 mockk = "1.13.8"
-navigationComposeVersion = "2.7.7"
+navigationTesting = "2.8.6"
 playServicesAuth = "21.3.0"
 firebaseFirestoreKtx = "25.1.1"
 firebaseCrashlyticsBuildtools = "3.0.2"
 navigationCompose = "2.8.6"
 navigationRuntimeKtx = "2.8.6"
+rules = "1.6.1"
+runner = "1.6.2"
 runtime = "1.7.7"
 ui = "1.7.7"
+uiTestJunit4 = "1.7.7"
+uiTestManifest = "1.7.7"
 uiToolingPreview = "1.7.7"
-uiVersion = "1.7.7"
 mockito = "2.25.0"
 koin = "4.0.2"
 storage = "1.5.0"
+uiTestAndroid = "1.7.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espressoCore" }
+androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espressoCore" }
+androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationTesting" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
@@ -85,8 +92,11 @@ firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "fireb
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
+ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "uiTestJunit4" }
+ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestManifest" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
-androidx-storage = { group = "androidx.test.services", name = "storage", version.ref = "storage" }
+#androidx-storage = { group = "androidx.test.services", name = "storage", version.ref = "storage" }
+androidx-ui-test-android = { group = "androidx.compose.ui", name = "ui-test-android", version.ref = "uiTestAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
