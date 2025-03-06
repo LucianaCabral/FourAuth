@@ -2,6 +2,8 @@ package br.leeloo.fourauth.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.leeloo.fourauth.analytics.ButtonEvent
+import br.leeloo.fourauth.analytics.LoginAnalytics
 import br.leeloo.fourauth.domain.usecase.LogoutUseCase
 import br.leeloo.fourauth.presentation.action.HomeAction
 import kotlinx.coroutines.CoroutineDispatcher
@@ -13,7 +15,8 @@ import kotlinx.coroutines.launch
 
 internal class HomeViewModel(
     private val logoutUseCase: LogoutUseCase,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val analytics: LoginAnalytics,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
 
     private val _action: Channel<HomeAction> = Channel<HomeAction>(Channel.CONFLATED)
@@ -24,5 +27,10 @@ internal class HomeViewModel(
             logoutUseCase()
             _action.send(HomeAction.NavigateToLogin)
         }
+    }
+
+    fun onButtonLogoutClicked() {
+        analytics.logButtonClicked(ButtonEvent.LOGOUT_CLICKED)
+        logout()
     }
 }

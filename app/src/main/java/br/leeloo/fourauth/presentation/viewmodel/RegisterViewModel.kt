@@ -3,6 +3,8 @@ package br.leeloo.fourauth.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.leeloo.fourauth.analytics.ButtonEvent
+import br.leeloo.fourauth.analytics.LoginAnalytics
 import br.leeloo.fourauth.domain.usecase.RegisterUseCase
 import br.leeloo.fourauth.presentation.action.RegisterAction
 import br.leeloo.fourauth.presentation.state.RegisterState
@@ -18,7 +20,9 @@ import kotlinx.coroutines.launch
 
 internal class RegisterViewModel(
     private val registerUseCase: RegisterUseCase,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val analytics: LoginAnalytics,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+
 ) : ViewModel() {
     private val _state = MutableStateFlow(RegisterState())
     val state: StateFlow<RegisterState> = _state.asStateFlow()
@@ -50,5 +54,6 @@ internal class RegisterViewModel(
 
     fun onButtonRegisterClicked() {
         _action.trySend(RegisterAction.RegisterButtonClicked)
+        analytics.logButtonClicked(ButtonEvent.REGISTER_CLICKED)
     }
 }

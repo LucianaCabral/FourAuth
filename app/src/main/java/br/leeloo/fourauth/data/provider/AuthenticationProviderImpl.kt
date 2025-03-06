@@ -5,7 +5,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-internal class AuthenticationProviderImpl( private val firebaseAuth: FirebaseAuth):
+internal class AuthenticationProviderImpl(private val firebaseAuth: FirebaseAuth):
     AuthenticationProvider {
 
     override suspend fun createUserWithEmailAndPassword(

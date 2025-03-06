@@ -32,7 +32,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import br.leeloo.four.presentation.viewmodel.LoginViewModel
+import br.leeloo.fourauth.presentation.viewmodel.LoginViewModel
 import br.leeloo.fourauth.R
 import br.leeloo.fourauth.presentation.action.LoginAction
 import br.leeloo.fourauth.presentation.state.LoginState
@@ -50,14 +50,14 @@ internal fun LoginScreen(
         state = state,
         onEmailChanged = { viewModel.onEmailChanged(it) },
         onPasswordChanged = { viewModel.onPasswordChanged(it) },
-        onLoginClicked = { viewModel.onButtonLoginClicked() },
-        onRegisterClicked = viewModel::onButtonRegisterClicked,
+        onLoginClicked = viewModel::onButtonLoginClicked,
+        onRegisterClicked = viewModel::onButtonRegisterClicked
     )
 
     LaunchedEffect(viewModel) {
         viewModel.action.collectLatest { action ->
             when (action) {
-                LoginAction.LoginButtonClicked -> viewModel.login()
+                LoginAction.LoginButtonClicked -> navController.navigate(context.getString(R.string.nav_home))
                 LoginAction.onResgisterClicked -> navController.navigate(context.getString(R.string.nav_register))
                 LoginAction.NavigateToHome -> navController.navigate(context.getString(R.string.nav_home)) {
                     popUpTo(context.getString(R.string.nav_login)) { inclusive = true }
